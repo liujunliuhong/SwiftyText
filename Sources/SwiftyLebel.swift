@@ -9,6 +9,18 @@
 import UIKit
 import CoreText
 
-class SwiftyLebel: UIView {
+open class SwiftyLebel: UIView {
+    
+}
+
+extension SwiftyLebel {
+    
+}
+
+extension SwiftyLebel {
+    
+}
+
+extension SwiftyLebel {
     
 }
