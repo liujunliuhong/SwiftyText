@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183815D424528A1C002C52BA /* SwiftyTextUnderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815D324528A1C002C52BA /* SwiftyTextUnderLine.swift */; };
+		183815D624528B65002C52BA /* SwiftyTextStrikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815D524528B65002C52BA /* SwiftyTextStrikethrough.swift */; };
+		183815D824528BE9002C52BA /* SwiftyTextHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815D724528BE9002C52BA /* SwiftyTextHighlight.swift */; };
+		183815DA24528C14002C52BA /* SwiftyTextRunDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815D924528C14002C52BA /* SwiftyTextRunDelegate.swift */; };
+		183815DC24528D88002C52BA /* SwiftyTextReplace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815DB24528D88002C52BA /* SwiftyTextReplace.swift */; };
+		183815DE24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815DD24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift */; };
+		183815E024528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815DF24528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift */; };
+		183815E22452946F002C52BA /* SwiftyTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E12452946F002C52BA /* SwiftyTextContainer.swift */; };
+		183815E4245295B5002C52BA /* SwiftyTextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E3245295B5002C52BA /* SwiftyTextLayout.swift */; };
+		183815E62452C717002C52BA /* SwiftyTextDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E52452C717002C52BA /* SwiftyTextDraw.swift */; };
+		183815E82452D144002C52BA /* SwiftyTextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E72452D144002C52BA /* SwiftyTextUtilities.swift */; };
 		18BFEE812451B6600027981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE802451B6600027981B /* AppDelegate.swift */; };
 		18BFEE852451B6600027981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE842451B6600027981B /* ViewController.swift */; };
 		18BFEE882451B6600027981B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BFEE862451B6600027981B /* Main.storyboard */; };
@@ -20,6 +31,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		183815D324528A1C002C52BA /* SwiftyTextUnderLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextUnderLine.swift; sourceTree = "<group>"; };
+		183815D524528B65002C52BA /* SwiftyTextStrikethrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextStrikethrough.swift; sourceTree = "<group>"; };
+		183815D724528BE9002C52BA /* SwiftyTextHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextHighlight.swift; sourceTree = "<group>"; };
+		183815D924528C14002C52BA /* SwiftyTextRunDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextRunDelegate.swift; sourceTree = "<group>"; };
+		183815DB24528D88002C52BA /* SwiftyTextReplace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextReplace.swift; sourceTree = "<group>"; };
+		183815DD24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+SwiftyText.swift"; sourceTree = "<group>"; };
+		183815DF24528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+SwiftyText.swift"; sourceTree = "<group>"; };
+		183815E12452946F002C52BA /* SwiftyTextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextContainer.swift; sourceTree = "<group>"; };
+		183815E3245295B5002C52BA /* SwiftyTextLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextLayout.swift; sourceTree = "<group>"; };
+		183815E52452C717002C52BA /* SwiftyTextDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextDraw.swift; sourceTree = "<group>"; };
+		183815E72452D144002C52BA /* SwiftyTextUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextUtilities.swift; sourceTree = "<group>"; };
 		18BFEE7D2451B6600027981B /* SwiftyText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BFEE802451B6600027981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18BFEE842451B6600027981B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +104,13 @@
 			children = (
 				18BFEE952451B7DD0027981B /* SwiftyLebel.swift */,
 				18BFEE972451B8A80027981B /* SwiftyTextLine.swift */,
+				183815E3245295B5002C52BA /* SwiftyTextLayout.swift */,
+				183815E52452C717002C52BA /* SwiftyTextDraw.swift */,
+				183815E12452946F002C52BA /* SwiftyTextContainer.swift */,
+				18BFEE9E2451BB160027981B /* SwiftyTextAttributes.swift */,
+				183815E72452D144002C52BA /* SwiftyTextUtilities.swift */,
+				183815DD24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift */,
+				183815DF24528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift */,
 				18BFEE992451B9FD0027981B /* Attributes */,
 			);
 			path = Sources;
@@ -90,9 +119,13 @@
 		18BFEE992451B9FD0027981B /* Attributes */ = {
 			isa = PBXGroup;
 			children = (
-				18BFEE9E2451BB160027981B /* SwiftyTextAttributes.swift */,
 				18BFEEA02451BDEA0027981B /* SwiftyTextAttachment.swift */,
 				18BFEEA22451BFCE0027981B /* SwiftyTextBorder.swift */,
+				183815D324528A1C002C52BA /* SwiftyTextUnderLine.swift */,
+				183815D524528B65002C52BA /* SwiftyTextStrikethrough.swift */,
+				183815D724528BE9002C52BA /* SwiftyTextHighlight.swift */,
+				183815D924528C14002C52BA /* SwiftyTextRunDelegate.swift */,
+				183815DB24528D88002C52BA /* SwiftyTextReplace.swift */,
 			);
 			path = Attributes;
 			sourceTree = "<group>";
@@ -169,11 +202,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183815DA24528C14002C52BA /* SwiftyTextRunDelegate.swift in Sources */,
 				18BFEE852451B6600027981B /* ViewController.swift in Sources */,
 				18BFEE9F2451BB160027981B /* SwiftyTextAttributes.swift in Sources */,
+				183815DE24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift in Sources */,
 				18BFEE812451B6600027981B /* AppDelegate.swift in Sources */,
+				183815E62452C717002C52BA /* SwiftyTextDraw.swift in Sources */,
+				183815E22452946F002C52BA /* SwiftyTextContainer.swift in Sources */,
+				183815E024528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift in Sources */,
 				18BFEEA32451BFCE0027981B /* SwiftyTextBorder.swift in Sources */,
+				183815E82452D144002C52BA /* SwiftyTextUtilities.swift in Sources */,
 				18BFEE982451B8A80027981B /* SwiftyTextLine.swift in Sources */,
+				183815D624528B65002C52BA /* SwiftyTextStrikethrough.swift in Sources */,
+				183815E4245295B5002C52BA /* SwiftyTextLayout.swift in Sources */,
+				183815D424528A1C002C52BA /* SwiftyTextUnderLine.swift in Sources */,
+				183815D824528BE9002C52BA /* SwiftyTextHighlight.swift in Sources */,
+				183815DC24528D88002C52BA /* SwiftyTextReplace.swift in Sources */,
 				18BFEE962451B7DD0027981B /* SwiftyLebel.swift in Sources */,
 				18BFEEA12451BDEA0027981B /* SwiftyTextAttachment.swift in Sources */,
 			);

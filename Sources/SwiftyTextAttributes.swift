@@ -18,6 +18,16 @@ public let SwiftyTextAttachmentToken: String = "\u{FFFC}" // empty text
 public let SwiftyTextTruncationToken: String = "\u{2026}" // ...
 
 
+public extension NSAttributedString.Key {
+    static let stAttachmentAttributeName: NSAttributedString.Key          = NSAttributedString.Key("SwiftyTextAttachment")
+    static let stHighlightAttributeName: NSAttributedString.Key           = NSAttributedString.Key("SwiftyTextHighlight")
+    static let stBackgroundBorderAttributeName: NSAttributedString.Key    = NSAttributedString.Key("SwiftyTextBackgroundBorder")
+    static let stRePlaceAttributeName: NSAttributedString.Key             = NSAttributedString.Key("SwiftyTextReplace")
+    static let stStrikethroughAttributeName: NSAttributedString.Key       = NSAttributedString.Key("SwiftyTextStrikethrough")
+    static let stUnderlineAttributeName: NSAttributedString.Key           = NSAttributedString.Key("SwiftyTextUnderline")
+}
+
+
 public enum SwiftyTextTruncationType {
     case none
     case start
