@@ -44,5 +44,5 @@ public enum SwiftyTextVerticalAlignment {
 public enum SwiftyTextLineStyle {
     case none
     case single(strokeWidth: CGFloat = .zero, strokeColor: UIColor? = nil, lineJoin: CGLineJoin = .round, lineCap: CGLineCap = .butt)
-    case dash(strokeWidth: CGFloat = .zero, strokeColor: UIColor? = nil, lineJoin: CGLineJoin? = nil, lineCap: CGLineCap = .butt, lengths: [CGFloat] = [5, 3])
+    case dash(strokeWidth: CGFloat = .zero, strokeColor: UIColor? = nil, lineJoin: CGLineJoin = .round, lineCap: CGLineCap = .butt, lengths: [CGFloat] = [5, 3])
 }

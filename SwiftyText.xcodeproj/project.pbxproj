@@ -18,6 +18,7 @@
 		183815E4245295B5002C52BA /* SwiftyTextLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E3245295B5002C52BA /* SwiftyTextLayout.swift */; };
 		183815E62452C717002C52BA /* SwiftyTextDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E52452C717002C52BA /* SwiftyTextDraw.swift */; };
 		183815E82452D144002C52BA /* SwiftyTextUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E72452D144002C52BA /* SwiftyTextUtilities.swift */; };
+		183815EA245306B0002C52BA /* Array+SwiftyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183815E9245306B0002C52BA /* Array+SwiftyText.swift */; };
 		18BFEE812451B6600027981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE802451B6600027981B /* AppDelegate.swift */; };
 		18BFEE852451B6600027981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE842451B6600027981B /* ViewController.swift */; };
 		18BFEE882451B6600027981B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BFEE862451B6600027981B /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		183815E3245295B5002C52BA /* SwiftyTextLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextLayout.swift; sourceTree = "<group>"; };
 		183815E52452C717002C52BA /* SwiftyTextDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextDraw.swift; sourceTree = "<group>"; };
 		183815E72452D144002C52BA /* SwiftyTextUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextUtilities.swift; sourceTree = "<group>"; };
+		183815E9245306B0002C52BA /* Array+SwiftyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SwiftyText.swift"; sourceTree = "<group>"; };
 		18BFEE7D2451B6600027981B /* SwiftyText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BFEE802451B6600027981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18BFEE842451B6600027981B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				183815E72452D144002C52BA /* SwiftyTextUtilities.swift */,
 				183815DD24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift */,
 				183815DF24528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift */,
+				183815E9245306B0002C52BA /* Array+SwiftyText.swift */,
 				18BFEE992451B9FD0027981B /* Attributes */,
 			);
 			path = Sources;
@@ -212,6 +215,7 @@
 				183815E024528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift in Sources */,
 				18BFEEA32451BFCE0027981B /* SwiftyTextBorder.swift in Sources */,
 				183815E82452D144002C52BA /* SwiftyTextUtilities.swift in Sources */,
+				183815EA245306B0002C52BA /* Array+SwiftyText.swift in Sources */,
 				18BFEE982451B8A80027981B /* SwiftyTextLine.swift in Sources */,
 				183815D624528B65002C52BA /* SwiftyTextStrikethrough.swift in Sources */,
 				183815E4245295B5002C52BA /* SwiftyTextLayout.swift in Sources */,
