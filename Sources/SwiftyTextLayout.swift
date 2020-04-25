@@ -433,3 +433,53 @@ extension SwiftyTextLayout {
         return textLayout
     }
 }
+
+extension SwiftyTextLayout {
+    public static func draw(layout: SwiftyTextLayout?, context: CGContext?, size: CGSize) {
+        SwiftyTextLayout.draw(layout: layout, context: context, size: size, point: .zero, view: nil, layer: nil, cancel: nil)
+    }
+    
+    public static func draw(layout: SwiftyTextLayout?, context: CGContext?, size: CGSize, point: CGPoint, view: UIView?, layer: CALayer?, cancel: (() -> Bool)? = nil) {
+        guard let layout = layout else { return }
+        
+        // draw backgound border
+        if layout.isNeedDrawBackgroundBorder, let context = context {
+            if let cancel = cancel, cancel() {
+                return
+            }
+            SwiftyTextDraw.drawBackgroundBorder(layout: layout, context: context, size: size, point: point, cancel: cancel)
+        }
+        
+        // draw under line
+        if layout.isNeedDrawUnderline, let context = context {
+            if let cancel = cancel, cancel() {
+                return
+            }
+            SwiftyTextDraw.drawUnderline(layout: layout, context: context, size: size, point: point, cancel: cancel)
+        }
+        
+        // draw text
+        if layout.isNeedDrawText, let context = context {
+            if let cancel = cancel, cancel() {
+                return
+            }
+            SwiftyTextDraw.drawText(layout: layout, context: context, size: size, point: point, cancel: cancel)
+        }
+        
+        // draw attachment
+        if layout.isNeedDrawAttachment && (context != nil || view != nil || layer != nil) {
+            if let cancel = cancel, cancel() {
+                return
+            }
+            SwiftyTextDraw.drawAttachment(layout: layout, context: context, size: size, point: point, targetView: view, targetLayer: layer, cancel: cancel)
+        }
+        
+        // draw strike through
+        if layout.isNeedDrawStrikethrough, let context = context {
+            if let cancel = cancel, cancel() {
+                return
+            }
+            SwiftyTextDraw.drawStrikethrough(layout: layout, context: context, size: size, point: point, cancel: cancel)
+        }
+    }
+}

@@ -111,9 +111,9 @@
 				183815E12452946F002C52BA /* SwiftyTextContainer.swift */,
 				18BFEE9E2451BB160027981B /* SwiftyTextAttributes.swift */,
 				183815E72452D144002C52BA /* SwiftyTextUtilities.swift */,
-				183815DD24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift */,
 				183815DF24528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift */,
 				183815E9245306B0002C52BA /* Array+SwiftyText.swift */,
+				183815DD24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift */,
 				18BFEE992451B9FD0027981B /* Attributes */,
 			);
 			path = Sources;

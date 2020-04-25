@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 import CoreText
 
-public struct SwiftyTextDraw {
+internal struct SwiftyTextDraw {
     
 }
 
 // MARK: - Draw Text
 extension SwiftyTextDraw {
-    public static func drawText(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
+    internal static func drawText(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
         if layout.lines.count <= 0 {
             return
         }
         if !layout.isNeedDrawText {
             return
         }
-        if let _cancel = cancel, _cancel() {
+        if let cancel = cancel, cancel() {
             return
         }
         let lines = layout.lines
@@ -57,24 +57,24 @@ extension SwiftyTextDraw {
         }
     }
     
-    public static func drawRun(line: SwiftyTextLine, run: CTRun, context: CGContext, size: CGSize) {
+    internal static func drawRun(line: SwiftyTextLine, run: CTRun, context: CGContext, size: CGSize) {
         context.saveGState()
         context.textMatrix = .identity
-        CTRunDraw(run, context, CFRangeMake(0, 0))
+        CTRunDraw(run, context, CFRangeMake(0, 0)) // draw run
         context.restoreGState()
     }
 }
 
 // MARK: - Draw Attachment
 extension SwiftyTextDraw {
-    public static func drawAttachment(layout: SwiftyTextLayout, context: CGContext?, size: CGSize, point: CGPoint, targetView: UIView?, targetLayer: CALayer?, cancel: (() -> Bool)? = nil) {
+    internal static func drawAttachment(layout: SwiftyTextLayout, context: CGContext?, size: CGSize, point: CGPoint, targetView: UIView?, targetLayer: CALayer?, cancel: (() -> Bool)? = nil) {
         if layout.lines.count <= 0 {
             return
         }
         if !layout.isNeedDrawAttachment {
             return
         }
-        if let _cancel = cancel, _cancel() {
+        if let cancel = cancel, cancel() {
             return
         }
         
@@ -143,14 +143,14 @@ extension SwiftyTextDraw {
 
 // MARK: - Draw Background Border
 extension SwiftyTextDraw {
-    public static func drawBackgroundBorder(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
+    internal static func drawBackgroundBorder(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
         if layout.lines.count <= 0 {
             return
         }
         if !layout.isNeedDrawBackgroundBorder {
             return
         }
-        if let _cancel = cancel, _cancel() {
+        if let cancel = cancel, cancel() {
             return
         }
         
@@ -262,6 +262,10 @@ extension SwiftyTextDraw {
             break
         }
         
+        if innerStrokeWidth.isLessThanOrEqualTo(.zero) {
+            return
+        }
+        
         // outer line
         switch border.outerLineStyle {
         case .single(let strokeWidth, let strokeColor, let lineJoin, let lineCap):
@@ -303,14 +307,14 @@ extension SwiftyTextDraw {
 
 // MARK: - Draw Underline
 extension SwiftyTextDraw {
-    public static func drawUnderline(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
+    internal static func drawUnderline(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
         if layout.lines.count <= 0 {
             return
         }
         if !layout.isNeedDrawUnderline {
             return
         }
-        if let _cancel = cancel, _cancel() {
+        if let cancel = cancel, cancel() {
             return
         }
         let lines = layout.lines
@@ -350,7 +354,7 @@ extension SwiftyTextDraw {
                         if textUnderline != afterTextUnderline {
                             let unionRects = tmpRunRects.st_rects_union()
                             let positionX: CGFloat = unionRects.origin.x
-                            let positionY: CGFloat = line.position.y + point.y // 基于baseLine
+                            let positionY: CGFloat = line.position.y + point.y // base on baseLine
                             
                             SwiftyTextDraw.drawUnderlineRects(context: context, underLine: textUnderline, position: CGPoint(x: positionX, y: positionY), rects: tmpRunRects)
                             tmpRunRects.removeAll()
@@ -358,7 +362,7 @@ extension SwiftyTextDraw {
                     } else {
                         let unionRects = tmpRunRects.st_rects_union()
                         let positionX: CGFloat = unionRects.origin.x
-                        let positionY: CGFloat = line.position.y + point.y // 基于baseLine
+                        let positionY: CGFloat = line.position.y + point.y // base on baseLine
                         
                         SwiftyTextDraw.drawUnderlineRects(context: context, underLine: textUnderline, position: CGPoint(x: positionX, y: positionY), rects: tmpRunRects)
                         tmpRunRects.removeAll()
@@ -450,14 +454,14 @@ extension SwiftyTextDraw {
 
 // MARK: - Draw Strikethrough
 extension SwiftyTextDraw {
-    public static func drawStrikethrough(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
+    internal static func drawStrikethrough(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
         if layout.lines.count <= 0 {
             return
         }
         if !layout.isNeedDrawStrikethrough {
             return
         }
-        if let _cancel = cancel, _cancel() {
+        if let cancel = cancel, cancel() {
             return
         }
         let lines = layout.lines

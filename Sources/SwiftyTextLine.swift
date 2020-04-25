@@ -81,7 +81,6 @@ extension SwiftyTextLine {
                 CTRunGetPositions(firstRun, CFRange(location: 0, length: 1), &firstRunFirstGlyphPosition)
                 self.firstRunFirstGlyphPosition = firstRunFirstGlyphPosition.x
             }
-            
         } else {
             self.trailingWhitespaceWidth = 0.0
             self.firstRunFirstGlyphPosition = 0.0
