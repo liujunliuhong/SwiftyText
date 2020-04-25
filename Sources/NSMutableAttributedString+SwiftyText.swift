@@ -285,7 +285,13 @@ extension NSMutableAttributedString {
 
 // MARK: - Attachment
 extension NSAttributedString {
-    public class func st_attachmentString(content: Any?, contentMode: UIView.ContentMode, size: CGSize, font: UIFont, verticalAlignment: SwiftyTextVerticalAlignment, userInfo: [String: Any]? = nil) -> NSMutableAttributedString? {
+    public class func st_attachmentString(content: Any?,
+                                          contentMode: UIView.ContentMode,
+                                          size: CGSize,
+                                          font: UIFont,
+                                          verticalAlignment: SwiftyTextVerticalAlignment,
+                                          userInfo: [String: Any]? = nil) -> NSMutableAttributedString? {
+        
         let atr = NSMutableAttributedString(string: SwiftyTextAttachmentToken)
         let range = NSRange(location: 0, length: atr.length)
         
