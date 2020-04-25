@@ -31,10 +31,10 @@ import CoreText
  * obliqueness            // NSNumber containing floating point value; skew to be applied to glyphs, default 0: no skew
  * expansion              // NSNumber containing floating point value; log of expansion factor to be applied to glyphs,                             default 0: no expansion
  * writingDirection       // NSArray of NSNumbers representing the nested levels of writing direction overrides as defined                          by Unicode LRE, RLE, LRO, and RLO characters.  The control characters can be obtained by                               masking NSWritingDirection and NSWritingDirectionFormatType values.
-                             LRE: NSWritingDirectionLeftToRight|NSWritingDirectionEmbedding,
-                             RLE: NSWritingDirectionRightToLeft|NSWritingDirectionEmbedding,
-                             LRO: NSWritingDirectionLeftToRight|NSWritingDirectionOverride,
-                             RLO: NSWritingDirectionRightToLeft|NSWritingDirectionOverride,
+ LRE: NSWritingDirectionLeftToRight|NSWritingDirectionEmbedding,
+ RLE: NSWritingDirectionRightToLeft|NSWritingDirectionEmbedding,
+ LRO: NSWritingDirectionLeftToRight|NSWritingDirectionOverride,
+ RLO: NSWritingDirectionRightToLeft|NSWritingDirectionOverride,
  * verticalGlyphForm      // An NSNumber containing an integer value.  0 means horizontal text.  1 indicates vertical text.                         If not specified, it could follow higher-level vertical orientation settings.  Currently on                            iOS, it's always horizontal.  The behavior for any other value is undefined.
  */
 
@@ -284,8 +284,53 @@ extension NSMutableAttributedString {
 }
 
 // MARK: - Attachment
-extension NSMutableAttributedString {
-    
+extension NSAttributedString {
+    public class func st_attachmentString(content: Any?, contentMode: UIView.ContentMode, size: CGSize, font: UIFont, verticalAlignment: SwiftyTextVerticalAlignment, userInfo: [String: Any]? = nil) -> NSMutableAttributedString? {
+        let atr = NSMutableAttributedString(string: SwiftyTextAttachmentToken)
+        let range = NSRange(location: 0, length: atr.length)
+        
+        let attachment = SwiftyTextAttachment(content: content, contentMode: contentMode, userInfo: userInfo)
+        
+        atr.st_addAttribute(key: .stAttachmentAttributeName, value: attachment, range: range)
+        
+        let width = size.width
+        var ascent: CGFloat = .zero
+        var descent: CGFloat = .zero
+        
+        switch verticalAlignment {
+        case .top:
+            ascent = font.ascender
+            descent = size.height - font.ascender
+            if descent.isLessThanOrEqualTo(.zero) {
+                descent = .zero
+                ascent = size.height
+            }
+        case .center:
+            let fontHeight: CGFloat = font.ascender - font.descender
+            let yOffset = font.ascender - fontHeight * 0.5
+            ascent = size.height * 0.5 + yOffset
+            descent = size.height - ascent
+            if descent.isLessThanOrEqualTo(.zero) {
+                descent = .zero
+                ascent = size.height
+            }
+        case .bottom:
+            ascent = size.height + font.descender
+            descent = -font.descender
+            if ascent.isLessThanOrEqualTo(.zero) {
+                ascent = .zero
+                descent = size.height
+            }
+        }
+        
+        let textRunDelegate = SwiftyTextRunDelegate(ascent: ascent, descent: descent, width: width, userInfo: attachment.userInfo)
+        
+        guard let runDelegate = textRunDelegate.getRunDelegate() else { return nil }
+        
+        atr.st_addAttribute(key: kCTRunDelegateAttributeName as NSAttributedString.Key, value: runDelegate, range: range)
+        
+        return atr
+    }
 }
 
 // MARK: - BackgroundBorder
