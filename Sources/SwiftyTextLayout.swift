@@ -96,8 +96,7 @@ extension SwiftyTextLayout {
                 lineOrigins?.deallocate()
                 return nil
             }
-            //var rect: CGRect = CGRect(x: 0, y: 0, width: container.size.width, height: container.size.height)
-            var rect: CGRect = CGRect(x: 0, y: 0, width: container.size.width, height: SwiftyTextMaxSize.height)
+            var rect: CGRect = CGRect(x: 0, y: 0, width: container.size.width, height: container.size.height)
             rect = rect.standardized
             cgPathBox = rect //
             rect = rect.applying(CGAffineTransform(scaleX: 1, y: -1))
@@ -337,9 +336,23 @@ extension SwiftyTextLayout {
                     } else if container.truncationType == .middle {
                         type = .middle
                     }
+                    
                     // 拼接`truncationToken`
-                    let lastLineAttributedText = NSMutableAttributedString(attributedString: attributedText.attributedSubstring(from: lastLine.range))
-                    lastLineAttributedText.append(truncationToken!)
+                    var lastLineAttributedText = NSMutableAttributedString(attributedString: attributedText.attributedSubstring(from: lastLine.range))
+                    
+                    if type == .start {
+                        let newLastLineAttributedText = NSMutableAttributedString(attributedString: attributedText.attributedSubstring(from: NSRange(location: attributedText.length - lastLine.range.length, length: lastLine.range.length)))
+                        newLastLineAttributedText.replaceCharacters(in: NSRange(location: 0, length: 1), with: truncationToken!)
+                        lastLineAttributedText = newLastLineAttributedText
+                    } else if type == .middle {
+                        let newLastLineAttributedText = NSMutableAttributedString(attributedString: attributedText.attributedSubstring(from: NSRange(location: attributedText.length - lastLine.range.length, length: lastLine.range.length)))
+                        let newTruncationToken = truncationToken!.mutableCopy() as! NSMutableAttributedString
+                        let lastLineMiddleIndex = lastLine.range.length / 2
+                        newLastLineAttributedText.insert(newTruncationToken, at: lastLineMiddleIndex)
+                        lastLineAttributedText = newLastLineAttributedText
+                    } else {
+                        lastLineAttributedText.append(truncationToken!)
+                    }
                     
                     let ctLastExtendLine: CTLine = CTLineCreateWithAttributedString(lastLineAttributedText)
                     var truncatedWidth: CGFloat = lastLine.width

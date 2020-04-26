@@ -58,10 +58,7 @@ extension SwiftyTextDraw {
     }
     
     internal static func drawRun(line: SwiftyTextLine, run: CTRun, context: CGContext, size: CGSize) {
-        context.saveGState()
-        context.textMatrix = .identity
         CTRunDraw(run, context, CFRangeMake(0, 0)) // draw run
-        context.restoreGState()
     }
 }
 

@@ -160,14 +160,54 @@ open class SwiftyLabel: UIView {
             if self.displaysAsynchronously {
                 self.clearContents()
             }
-            self.updateLayout()
-            self.setLayoutNeedRedraw()
+            self.setLayoutNeedUpdate()
+            self.endTouch()
+            self.invalidateIntrinsicContentSize()
         }
         get {
             return _truncationType
         }
     }
 
+    
+    private var _lineBreakMode: NSLineBreakMode = .byTruncatingTail
+    public var lineBreakMode: NSLineBreakMode {
+        set {
+            if _lineBreakMode == newValue {
+                return
+            }
+            _lineBreakMode = newValue
+            self.innerAttributedText.st_add(lineBreakMode: _lineBreakMode)
+            switch _lineBreakMode {
+            case .byWordWrapping,
+                 .byCharWrapping,
+                 .byClipping:
+                self.innerContainer.truncationType = .none
+                self.innerAttributedText.st_add(lineBreakMode: _lineBreakMode)
+            case .byTruncatingHead:
+                self.innerContainer.truncationType = .start
+                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+            case .byTruncatingTail:
+                self.innerContainer.truncationType = .end
+                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+            case .byTruncatingMiddle:
+                self.innerContainer.truncationType = .middle
+                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+            @unknown default:
+                self.innerContainer.truncationType = .end
+                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+            }
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+            self.endTouch()
+            self.invalidateIntrinsicContentSize()
+        }
+        get {
+            return _lineBreakMode
+        }
+    }
     
     
     public var displaysAsynchronously: Bool = true {
@@ -217,7 +257,7 @@ open class SwiftyLabel: UIView {
     }
     
     public override init(frame: CGRect) {
-        super.init(frame: frame)
+        super.init(frame: .zero)
         self.setup()
         self.frame = frame
     }

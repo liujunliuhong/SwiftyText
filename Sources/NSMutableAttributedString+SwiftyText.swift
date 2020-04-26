@@ -164,7 +164,10 @@ extension NSMutableAttributedString {
         }
     }
     
-    // lineBreakMode
+    // lineBreakMode（此方法慎用）
+    // 如果忽略`SwiftyLabel`中的`lineBreakMode`属性，而直接通过该方法设置富文本的`lineBreakMode`，最后只会显示一行
+    // 原因是`lineBreakMode`最后是设置到富文本的`NSParagraphStyle`段落样式的属性中。
+    // 当富文本中的`NSParagraphStyle`属性中的`lineBreakMode`值有意义，那么用`CTFramesetter`创建的`CTLine`就只会有一行
     public func st_add(lineBreakMode: NSLineBreakMode, range: NSRange? = nil) {
         let _range = (range == nil) ? NSRange(location: 0, length: self.length) : range!
         st_paragraphStyleSet(range: _range) { (style) in
