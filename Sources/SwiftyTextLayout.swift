@@ -62,6 +62,11 @@ extension SwiftyTextLayout {
             return nil
         }
         
+        // check size
+        if container.size.height.isEqual(to: CGFloat.greatestFiniteMagnitude) {
+            container.size.height = SwiftyTextMaxSize.height
+        }
+        
         
         var cgPath: CGPath
         var cgPathBox = CGRect.zero

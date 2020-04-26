@@ -52,7 +52,7 @@ public class SwiftyTextContainer: NSObject {
     
     
     
-    private var _numberOfLines: Int = 1
+    private var _numberOfLines: Int = 0
     public var numberOfLines: Int {
         set {
             lock.wait()

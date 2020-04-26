@@ -148,26 +148,26 @@ open class SwiftyLabel: UIView {
     
     
     
-    private var _truncationType: SwiftyTextTruncationType = .end
-    public var truncationType: SwiftyTextTruncationType {
-        set {
-            if _truncationType == newValue {
-                return
-            }
-            _truncationType = newValue
-            self.innerContainer.truncationType = newValue
-            
-            if self.displaysAsynchronously {
-                self.clearContents()
-            }
-            self.setLayoutNeedUpdate()
-            self.endTouch()
-            self.invalidateIntrinsicContentSize()
-        }
-        get {
-            return _truncationType
-        }
-    }
+//    private var _truncationType: SwiftyTextTruncationType = .end
+//    public var truncationType: SwiftyTextTruncationType {
+//        set {
+//            if _truncationType == newValue {
+//                return
+//            }
+//            _truncationType = newValue
+//            self.innerContainer.truncationType = newValue
+//            
+//            if self.displaysAsynchronously {
+//                self.clearContents()
+//            }
+//            self.setLayoutNeedUpdate()
+//            self.endTouch()
+//            self.invalidateIntrinsicContentSize()
+//        }
+//        get {
+//            return _truncationType
+//        }
+//    }
 
     
     private var _lineBreakMode: NSLineBreakMode = .byTruncatingTail

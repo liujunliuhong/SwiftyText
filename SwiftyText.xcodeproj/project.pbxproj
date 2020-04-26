@@ -22,6 +22,9 @@
 		18B2360624552996009FA100 /* SwiftyTextAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B2360524552996009FA100 /* SwiftyTextAsyncLayer.m */; };
 		18B2360924552E5C009FA100 /* SwiftyTextProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B2360824552E5C009FA100 /* SwiftyTextProxy.m */; };
 		18B2360B2455374F009FA100 /* SwiftyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2360A2455374F009FA100 /* SwiftyLabel.swift */; };
+		18B2360E24559019009FA100 /* Futura-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2360C24559018009FA100 /* Futura-Medium.ttf */; };
+		18B2360F24559019009FA100 /* AdihausDIN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2360D24559019009FA100 /* AdihausDIN.ttf */; };
+		18B236112455907E009FA100 /* CustomFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B236102455907E009FA100 /* CustomFontViewController.swift */; };
 		18BFEE812451B6600027981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE802451B6600027981B /* AppDelegate.swift */; };
 		18BFEE852451B6600027981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE842451B6600027981B /* ViewController.swift */; };
 		18BFEE882451B6600027981B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BFEE862451B6600027981B /* Main.storyboard */; };
@@ -31,6 +34,7 @@
 		18BFEE9F2451BB160027981B /* SwiftyTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE9E2451BB160027981B /* SwiftyTextAttributes.swift */; };
 		18BFEEA12451BDEA0027981B /* SwiftyTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEEA02451BDEA0027981B /* SwiftyTextAttachment.swift */; };
 		18BFEEA32451BFCE0027981B /* SwiftyTextBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEEA22451BFCE0027981B /* SwiftyTextBorder.swift */; };
+		88ADD235F0EE3E17BDAF2A07 /* Pods_SwiftyText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F796F3F9707BBA17FF7568 /* Pods_SwiftyText.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +55,9 @@
 		18B2360724552E5C009FA100 /* SwiftyTextProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTextProxy.h; sourceTree = "<group>"; };
 		18B2360824552E5C009FA100 /* SwiftyTextProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftyTextProxy.m; sourceTree = "<group>"; };
 		18B2360A2455374F009FA100 /* SwiftyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyLabel.swift; sourceTree = "<group>"; };
+		18B2360C24559018009FA100 /* Futura-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Medium.ttf"; sourceTree = "<group>"; };
+		18B2360D24559019009FA100 /* AdihausDIN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AdihausDIN.ttf; sourceTree = "<group>"; };
+		18B236102455907E009FA100 /* CustomFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontViewController.swift; sourceTree = "<group>"; };
 		18BFEE7D2451B6600027981B /* SwiftyText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BFEE802451B6600027981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18BFEE842451B6600027981B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +70,9 @@
 		18BFEE9E2451BB160027981B /* SwiftyTextAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextAttributes.swift; sourceTree = "<group>"; };
 		18BFEEA02451BDEA0027981B /* SwiftyTextAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextAttachment.swift; sourceTree = "<group>"; };
 		18BFEEA22451BFCE0027981B /* SwiftyTextBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyTextBorder.swift; sourceTree = "<group>"; };
+		5BE848A7ED212A722F3A88CB /* Pods-SwiftyText.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyText.release.xcconfig"; path = "Target Support Files/Pods-SwiftyText/Pods-SwiftyText.release.xcconfig"; sourceTree = "<group>"; };
+		A550D40C81A8771F5C33FC29 /* Pods-SwiftyText.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftyText.debug.xcconfig"; path = "Target Support Files/Pods-SwiftyText/Pods-SwiftyText.debug.xcconfig"; sourceTree = "<group>"; };
+		B9F796F3F9707BBA17FF7568 /* Pods_SwiftyText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftyText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88ADD235F0EE3E17BDAF2A07 /* Pods_SwiftyText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +92,8 @@
 			children = (
 				18BFEE7F2451B6600027981B /* SwiftyText */,
 				18BFEE7E2451B6600027981B /* Products */,
+				E10578F9B935DAEEC42078BC /* Pods */,
+				86B3ADF1AE2FDC5334F74107 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,10 +111,13 @@
 				18BFEE942451B7B30027981B /* Sources */,
 				18BFEE802451B6600027981B /* AppDelegate.swift */,
 				18BFEE842451B6600027981B /* ViewController.swift */,
+				18B236102455907E009FA100 /* CustomFontViewController.swift */,
 				18BFEE862451B6600027981B /* Main.storyboard */,
 				18BFEE892451B6620027981B /* Assets.xcassets */,
 				18BFEE8B2451B6620027981B /* LaunchScreen.storyboard */,
 				18BFEE8E2451B6620027981B /* Info.plist */,
+				18B2360D24559019009FA100 /* AdihausDIN.ttf */,
+				18B2360C24559018009FA100 /* Futura-Medium.ttf */,
 				18BFEE9A2451BA920027981B /* SwiftyText-Bridging-Header.h */,
 			);
 			path = SwiftyText;
@@ -143,6 +159,23 @@
 			path = Attributes;
 			sourceTree = "<group>";
 		};
+		86B3ADF1AE2FDC5334F74107 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9F796F3F9707BBA17FF7568 /* Pods_SwiftyText.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E10578F9B935DAEEC42078BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A550D40C81A8771F5C33FC29 /* Pods-SwiftyText.debug.xcconfig */,
+				5BE848A7ED212A722F3A88CB /* Pods-SwiftyText.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -150,9 +183,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18BFEE912451B6620027981B /* Build configuration list for PBXNativeTarget "SwiftyText" */;
 			buildPhases = (
+				BFF6F25006DD10018A42A13D /* [CP] Check Pods Manifest.lock */,
 				18BFEE792451B6600027981B /* Sources */,
 				18BFEE7A2451B6600027981B /* Frameworks */,
 				18BFEE7B2451B6600027981B /* Resources */,
+				B1C3AB11B49F099E255BD955 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,12 +238,56 @@
 			buildActionMask = 2147483647;
 			files = (
 				18BFEE8D2451B6620027981B /* LaunchScreen.storyboard in Resources */,
+				18B2360F24559019009FA100 /* AdihausDIN.ttf in Resources */,
 				18BFEE8A2451B6620027981B /* Assets.xcassets in Resources */,
+				18B2360E24559019009FA100 /* Futura-Medium.ttf in Resources */,
 				18BFEE882451B6600027981B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B1C3AB11B49F099E255BD955 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftyText/Pods-SwiftyText-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftyText/Pods-SwiftyText-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftyText/Pods-SwiftyText-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BFF6F25006DD10018A42A13D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftyText-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18BFEE792451B6600027981B /* Sources */ = {
@@ -223,6 +302,7 @@
 				183815E62452C717002C52BA /* SwiftyTextDraw.swift in Sources */,
 				183815E22452946F002C52BA /* SwiftyTextContainer.swift in Sources */,
 				183815E024528F66002C52BA /* NSMutableAttributedString+SwiftyText.swift in Sources */,
+				18B236112455907E009FA100 /* CustomFontViewController.swift in Sources */,
 				18BFEEA32451BFCE0027981B /* SwiftyTextBorder.swift in Sources */,
 				183815E82452D144002C52BA /* SwiftyTextUtilities.swift in Sources */,
 				183815EA245306B0002C52BA /* Array+SwiftyText.swift in Sources */,
@@ -377,13 +457,14 @@
 		};
 		18BFEE922451B6620027981B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A550D40C81A8771F5C33FC29 /* Pods-SwiftyText.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E8NVCJR97;
 				INFOPLIST_FILE = SwiftyText/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,13 +480,14 @@
 		};
 		18BFEE932451B6620027981B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BE848A7ED212A722F3A88CB /* Pods-SwiftyText.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2E8NVCJR97;
 				INFOPLIST_FILE = SwiftyText/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -17,6 +17,11 @@ class ViewController: UIViewController {
         self.showLabel()
         self.uikitLabel()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let vc = CustomFontViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 // 😆♊️✌️🌥🦈🐉🎍🏒🏀🏑🧩🚜🚛🏍🕋🕍💒🏬🏡🗽🏯🏤🛵🛵🚊🚦🗺⚖🛢💎🗑⏰🖲🔓🔐🈲☢️☣️♏️☢️㊗️🚷㊙️🎵⤴️↘️🔺🔵⬛️⏏️🇸🇬🇸🇷🇵🇹🇵🇭🇵🇪🇷🇸🇰🇳🦅🐒🦜🦚🚄♒️
