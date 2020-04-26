@@ -8,6 +8,14 @@
 # 背景
 在开发中，使用到富文本在所难免，大家用的最多的可能就是`YYText`了，但是`YYtext`已经有3年没更新了，而iOS系统却一直在更新，一个再好的三方库，如果不一直维护，也会随着系统的不断升级出现各种bug。在我使用`YYText`的过程中，就出现了各种问题，比如高度计算不准确、文本垂直居中有问题等等。也正是因为这些原因，促使我写了这个库，同时仔细阅读`YYText`源码，并翻阅其他各种富文本三方库，写一个属于自己的富文本框架
 
+在编写该框架过程中，借鉴了许多三方库:
+- [YYtext](https://github.com/ibireme/YYText)(主要)
+- [BSText](https://github.com/a1049145827/BSText)(Swift版本的YYText)
+- [TYAttributedLabel](https://github.com/12207480/TYAttributedLabel)
+- [TYText](https://github.com/12207480/TYText)
+- [DTCoreText](https://github.com/Cocoanetics/DTCoreText)
+- [M80AttributedLabel](https://github.com/xiangwangfeng/M80AttributedLabel)
+
 # 针对`YYText`中目前未被Close的问题，本人接下来会一一进行解答
 - [YYTextAsyncLayer类中对contentsScale的设置是有问题的...](https://github.com/ibireme/YYText/issues/920)
 
