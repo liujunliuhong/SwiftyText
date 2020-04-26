@@ -20,6 +20,9 @@ public class SwiftyTextLayout: NSObject {
     public private(set) var lines: [SwiftyTextLine] = []
     public private(set) var truncatedLine: SwiftyTextLine?
     
+    public private(set) var attachments: [SwiftyTextAttachment] = []
+    public private(set) var attachmentSet: NSMutableSet = NSMutableSet(array: [])
+    
     public private(set) var rowCount: Int = 0
     public private(set) var visibleRange: NSRange = NSRange(location: 0, length: 0)
     
@@ -78,6 +81,8 @@ extension SwiftyTextLayout {
         
         let maximumNumberOfRows: Int = container.numberOfLines
         
+        var attachments: [SwiftyTextAttachment] = []
+        let attachmentSet: NSMutableSet = NSMutableSet(array: [])
         
         /*
          ┌────────────────┐
@@ -400,6 +405,30 @@ extension SwiftyTextLayout {
         }
         
         
+        /*
+         ┌──────────────┐
+         │              │
+         │  Attachment  │
+         │              │
+         └──────────────┘
+         */
+        for index in 0..<lines.count {
+            var line: SwiftyTextLine = lines[index]
+            if truncatedLine != nil && truncatedLine!.index == index {
+                line = truncatedLine!
+            }
+            if line.attachments.count > 0 {
+                attachments.append(contentsOf: line.attachments)
+                line.attachments.forEach { (attachment) in
+                    if let content = attachment.content {
+                        attachmentSet.add(content)
+                    }
+                }
+            }
+        }
+        
+        
+        
         
         /*
          ┌─────────┐
@@ -417,6 +446,8 @@ extension SwiftyTextLayout {
         textLayout.truncatedLine = truncatedLine
         textLayout.rowCount = rowCount
         textLayout.visibleRange = visibleRange
+        textLayout.attachments = attachments
+        textLayout.attachmentSet = attachmentSet
         
         textLayout.isNeedDrawText = isNeedDrawText
         textLayout.isNeedDrawAttachment = isNeedDrawAttachment

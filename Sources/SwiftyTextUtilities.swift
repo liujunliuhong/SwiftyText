@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import CoreText
 
-public struct SwiftyTextUtilities {
+internal struct SwiftyTextUtilities {
     
 }
 
 extension SwiftyTextUtilities {
-    public static func attachmentRectFit(rect: CGRect, size: CGSize, mode: UIView.ContentMode) -> CGRect {
+    internal static func attachmentRectFit(rect: CGRect, size: CGSize, mode: UIView.ContentMode) -> CGRect {
         var rect = rect
         var size = size
         rect = rect.standardized

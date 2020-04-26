@@ -339,6 +339,23 @@ extension NSAttributedString {
     }
 }
 
+// MARK: - Highlight
+extension NSMutableAttributedString {
+    public func st_highlight(with range: NSRange, backgroundColor: UIColor?, highlightTextColor: UIColor?, userInfo: [String: Any]? = nil, tapAction: SwiftyTextAction? = nil, longPressAction: SwiftyTextAction? = nil) {
+        let highlight = SwiftyTextHighlight.highlight(backgroundColor: backgroundColor)
+        highlight.userInfo = userInfo
+        highlight.tapAction = tapAction
+        highlight.longPressAction = longPressAction
+        highlight.textColor = highlightTextColor
+        st_add(highlight: highlight, range: range)
+    }
+    
+    public func st_add(highlight: SwiftyTextHighlight, range: NSRange? = nil) {
+        let _range = (range == nil) ? NSRange(location: 0, length: self.length) : range!
+        st_addAttribute(key: .stHighlightAttributeName, value: highlight, range: _range)
+    }
+}
+
 // MARK: - BackgroundBorder
 extension NSMutableAttributedString {
     public func st_add(backgroundBorder: SwiftyTextBorder?, range: NSRange? = nil) {

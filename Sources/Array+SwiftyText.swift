@@ -22,3 +22,17 @@ internal extension Array where Element == CGRect {
         return unionRect
     }
 }
+
+internal extension Array where Element == NSRange {
+    func st_ranges_union() -> NSRange  {
+        var unionRange: NSRange = NSRange(location: 0, length: 0)
+        for (i, range) in self.enumerated() {
+            if i == 0 {
+                unionRange = range
+            } else {
+                unionRange = unionRange.union(range)
+            }
+        }
+        return unionRange
+    }
+}
