@@ -11,7 +11,18 @@ import UIKit
 import CoreText
 
 internal struct SwiftyTextUtilities {
-    
+    static var screenScale = UIScreen.main.scale
+//
+//    public static func TextCGPoint(pixelRound point: CGPoint) -> CGPoint {
+//        let scale = Double(textScreenScale)
+//        return CGPoint(x: CGFloat(round(Double(point.x) * scale) / scale), y: CGFloat(round(Double(point.y) * scale) / scale))
+//    }
+//
+//    public static func textCGRect(pixelRound rect: CGRect) -> CGRect {
+//        let origin: CGPoint = TextCGPoint(pixelRound: rect.origin)
+//        let corner = TextCGPoint(pixelRound: CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height))
+//        return CGRect(x: origin.x, y: origin.y, width: corner.x - origin.x, height: corner.y - origin.y)
+//    }
 }
 
 extension SwiftyTextUtilities {

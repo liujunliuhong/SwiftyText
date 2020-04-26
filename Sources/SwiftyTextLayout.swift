@@ -230,6 +230,7 @@ extension SwiftyTextLayout {
                 }
             }
         }
+        textRect.size.height += 1 // + 1    avoid bugs
         textRect = textRect.standardized
         
         if lines.count == 0 {

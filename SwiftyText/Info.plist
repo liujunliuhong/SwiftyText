@@ -6,6 +6,7 @@
 	<array>
 		<string>AdihausDIN.ttf</string>
 		<string>Futura-Medium.ttf</string>
+		<string>Monsieur La Doulaise.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,8 @@
 		18B2360E24559019009FA100 /* Futura-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2360C24559018009FA100 /* Futura-Medium.ttf */; };
 		18B2360F24559019009FA100 /* AdihausDIN.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2360D24559019009FA100 /* AdihausDIN.ttf */; };
 		18B236112455907E009FA100 /* CustomFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B236102455907E009FA100 /* CustomFontViewController.swift */; };
+		18B236132455AE64009FA100 /* Monsieur La Doulaise.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B236122455AE64009FA100 /* Monsieur La Doulaise.ttf */; };
+		18B236172455B921009FA100 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B236162455B921009FA100 /* BaseViewController.swift */; };
 		18BFEE812451B6600027981B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE802451B6600027981B /* AppDelegate.swift */; };
 		18BFEE852451B6600027981B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFEE842451B6600027981B /* ViewController.swift */; };
 		18BFEE882451B6600027981B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BFEE862451B6600027981B /* Main.storyboard */; };
@@ -58,6 +60,8 @@
 		18B2360C24559018009FA100 /* Futura-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Medium.ttf"; sourceTree = "<group>"; };
 		18B2360D24559019009FA100 /* AdihausDIN.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AdihausDIN.ttf; sourceTree = "<group>"; };
 		18B236102455907E009FA100 /* CustomFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontViewController.swift; sourceTree = "<group>"; };
+		18B236122455AE64009FA100 /* Monsieur La Doulaise.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Monsieur La Doulaise.ttf"; sourceTree = "<group>"; };
+		18B236162455B921009FA100 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		18BFEE7D2451B6600027981B /* SwiftyText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18BFEE802451B6600027981B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18BFEE842451B6600027981B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +91,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18B236142455B11A009FA100 /* Custom Font */ = {
+			isa = PBXGroup;
+			children = (
+				18B236102455907E009FA100 /* CustomFontViewController.swift */,
+			);
+			path = "Custom Font";
+			sourceTree = "<group>";
+		};
+		18B236152455B915009FA100 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				18B236162455B921009FA100 /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		18BFEE742451B6600027981B = {
 			isa = PBXGroup;
 			children = (
@@ -111,13 +131,15 @@
 				18BFEE942451B7B30027981B /* Sources */,
 				18BFEE802451B6600027981B /* AppDelegate.swift */,
 				18BFEE842451B6600027981B /* ViewController.swift */,
-				18B236102455907E009FA100 /* CustomFontViewController.swift */,
+				18B236152455B915009FA100 /* Base */,
+				18B236142455B11A009FA100 /* Custom Font */,
 				18BFEE862451B6600027981B /* Main.storyboard */,
 				18BFEE892451B6620027981B /* Assets.xcassets */,
 				18BFEE8B2451B6620027981B /* LaunchScreen.storyboard */,
 				18BFEE8E2451B6620027981B /* Info.plist */,
 				18B2360D24559019009FA100 /* AdihausDIN.ttf */,
 				18B2360C24559018009FA100 /* Futura-Medium.ttf */,
+				18B236122455AE64009FA100 /* Monsieur La Doulaise.ttf */,
 				18BFEE9A2451BA920027981B /* SwiftyText-Bridging-Header.h */,
 			);
 			path = SwiftyText;
@@ -242,6 +264,7 @@
 				18BFEE8A2451B6620027981B /* Assets.xcassets in Resources */,
 				18B2360E24559019009FA100 /* Futura-Medium.ttf in Resources */,
 				18BFEE882451B6600027981B /* Main.storyboard in Resources */,
+				18B236132455AE64009FA100 /* Monsieur La Doulaise.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +320,7 @@
 				183815DA24528C14002C52BA /* SwiftyTextRunDelegate.swift in Sources */,
 				18BFEE852451B6600027981B /* ViewController.swift in Sources */,
 				18BFEE9F2451BB160027981B /* SwiftyTextAttributes.swift in Sources */,
+				18B236172455B921009FA100 /* BaseViewController.swift in Sources */,
 				183815DE24528F0C002C52BA /* NSParagraphStyle+SwiftyText.swift in Sources */,
 				18BFEE812451B6600027981B /* AppDelegate.swift in Sources */,
 				183815E62452C717002C52BA /* SwiftyTextDraw.swift in Sources */,

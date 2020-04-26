@@ -4,3 +4,4 @@
 
 #import "SwiftyTextAsyncLayer.h"
 #import "SwiftyTextProxy.h"
+#import <YYText/YYText.h>

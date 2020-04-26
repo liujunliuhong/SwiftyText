@@ -10,74 +10,55 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var dataSource: [String] {
+        return ["基础属性",
+                "自定义字体",
+                "特殊文字(比如阿拉伯文，日文)"]
+    }
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: self.view.bounds, style: .plain)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cellID")
+        return tableView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        self.showLabel()
-        self.uikitLabel()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let vc = CustomFontViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        if #available(iOS 11.0, *) {
+            self.tableView.contentInsetAdjustmentBehavior = .always
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = true
+        }
+        view.addSubview(tableView)
     }
 }
 
-// 😆♊️✌️🌥🦈🐉🎍🏒🏀🏑🧩🚜🚛🏍🕋🕍💒🏬🏡🗽🏯🏤🛵🛵🚊🚦🗺⚖🛢💎🗑⏰🖲🔓🔐🈲☢️☣️♏️☢️㊗️🚷㊙️🎵⤴️↘️🔺🔵⬛️⏏️🇸🇬🇸🇷🇵🇹🇵🇭🇵🇪🇷🇸🇰🇳🦅🐒🦜🦚🚄♒️
-extension ViewController {
-    func showLabel() {
-        let frame = CGRect(x: 40, y: 100, width: UIScreen.main.bounds.size.width - 40.0 - 40.0, height: 100)
-        let label = SwiftyLabel(frame: frame)
-        label.numberOfLines = 0
-        label.lineBreakMode = .byTruncatingMiddle
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellID", for: indexPath)
+        cell.textLabel?.text = self.dataSource[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-        
-//        let a = NSMutableAttributedString(string: "AAAAAAAAAAAAAAABBBBBB")
-//        a.st_add(textColor: .cyan)
-//        a.st_add(font: UIFont.systemFont(ofSize: 17))
-//        label.truncationToken = a
-        
-        
-        label.backgroundColor = .orange
-        self.view.addSubview(label)
-        
-        let sumAtr = NSMutableAttributedString()
-        do {
-            let range = NSRange(location: 5, length: 5)
-            let atr = NSMutableAttributedString(string: "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm123")
-            atr.st_add(font: UIFont.systemFont(ofSize: 17))
-//            atr.st_add(font: UIFont.boldSystemFont(ofSize: 40), range: range)
-//            atr.st_add(textColor: UIColor.red, range: range)
+        if indexPath.row == 0 {
+            let vc = BaseViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 1 {
+            let vc = CustomFontViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 2 {
             
-            sumAtr.append(atr)
         }
-        
-        label.attributedText = sumAtr
-        
-        
-        
-        
-        
-    }
-    
-    func uikitLabel() {
-        let frame = CGRect(x: 40, y: 250, width: UIScreen.main.bounds.size.width - 40.0 - 40.0, height: 100)
-        let label = UILabel(frame: frame)
-        label.numberOfLines = 0
-        label.backgroundColor = .orange
-        label.lineBreakMode = .byTruncatingHead
-        self.view.addSubview(label)
-        
-        let sumAtr = NSMutableAttributedString()
-        do {
-            let range = NSRange(location: 5, length: 5)
-            let atr = NSMutableAttributedString(string: "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm123")
-            atr.st_add(font: UIFont.systemFont(ofSize: 17))
-            sumAtr.append(atr)
-        }
-        
-        label.attributedText = sumAtr
     }
 }
-
