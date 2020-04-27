@@ -1,5 +1,5 @@
 # SwiftyText
-基于`CoreText`，用`Swift`实现的轻量级自定义Label，在`YYText`的基础上，解决了许多`issues`中未解决的问题。
+基于`CoreText`，用`Swift`实现的轻量级自定义Label，代码整体思路类似于`YYText`，但是做了很多优化，在`YYText`的基础上，解决了许多`issues`中未解决的问题。
 
 # Demo以及细节部分正在完善中，稳定之后将支持pod
 # Demo以及细节部分正在完善中，稳定之后将支持pod
