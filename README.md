@@ -53,6 +53,7 @@ dispatch_async(dispatch_get_main_queue(), ^{
 
 - [YYTextLayout计算的高度不准确](https://github.com/ibireme/YYText/issues/900)
 
-在写框架Demo的过程中，本人终于复现了该问题。当`label`的`lineBreakMode`设置为`byCharWrapping`，然后用`YYTextLayout`的`layoutWithContainerSize:text:`计算高度，就有可能会出现高度计算不准确的问题。
+在写框架Demo的过程中，本人终于复现了该问题。
+当`label`的`lineBreakMode`设置为`byCharWrapping`，然后用`YYTextLayout`的`layoutWithContainerSize:text:`计算高度，就有可能会出现高度计算不准确的问题。
 仔细阅读`YYLabel`源码，发现在对`label`设置`lineBreakMode`时，内部会对`lineBreakMode`进行纠正，也就是说最终的`lineBreakMode`有可能不是你最初传入的值，而`YYTextLayout`的`layoutWithContainerSize:text:`默认使用的`lineBreakMode`为`byTruncatingTail`。`byCharWrapping`和`byTruncatingTail`在中英文混排时，表现形式是不一样的，这也就是`YYTextLayout`计算高度不准确的原因。
 解决办法目前正在探索中
