@@ -8,16 +8,49 @@
 
 import UIKit
 import CoreText
+/*  UILabel Properties
+ ✅ text
+ ✅ font
+ ✅ textColor
+ ✅ shadowColor
+ ✅ shadowOffset
+ ✅ textAlignment
+ ✅ lineBreakMode
+ ✅ attributedText
+ ✅ numberOfLines
+ ✅ isUserInteractionEnabled
+ ❌ highlightedTextColor
+ ❌ isHighlighted
+ ❌ isEnabled
+ ❌ adjustsFontSizeToFitWidth
+ ❌ baselineAdjustment
+ ❌ minimumScaleFactor
+ ❌ allowsDefaultTighteningForTruncation
+ ❌ preferredMaxLayoutWidth
+ 
+ open func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect
+ open func drawText(in rect: CGRect)
+ */
 
-/*
-attributedText
-numberOfLines
-exclusionPaths
-truncationToken
-verticalAlignment
-truncationType
-displaysAsynchronously
-*/
+
+/* SwiftyLabel Support Properties
+ text
+ font
+ textColor
+ lineBreakMode
+ textAlignment
+ shadowColor
+ shadowOffset
+ shadowBlurRadius
+ 
+ attributedText
+ numberOfLines
+ exclusionPaths
+ truncationToken
+ verticalAlignment
+ truncationType
+ displaysAsynchronously
+ */
 
 fileprivate let kLongPressMinimumDuration: TimeInterval = 0.5
 fileprivate let kLongPressAllowableMovement: CGFloat = 9
@@ -26,14 +59,206 @@ fileprivate let kAsyncFadeDuration: TimeInterval = 0.08
 
 open class SwiftyLabel: UIView {
     
+    private var _text: String?
+    open var text: String? {
+        set {
+            if _text == newValue {
+                return
+            }
+            _text = newValue
+            
+            let tmpText = _text ?? ""
+            
+            self.innerAttributedText.replaceCharacters(in: NSRange(location: 0, length: self.innerAttributedText.length), with: tmpText)
+            self.innerAttributedText.st_removeDiscontinuousAttributes()
+            
+            self.innerAttributedText.st_add(font: self.font)
+            self.innerAttributedText.st_add(textColor: self.textColor)
+            self.innerAttributedText.st_add(alignment: self.textAlignment)
+            
+            switch self.lineBreakMode {
+            case .byWordWrapping,
+                 .byCharWrapping,
+                 .byClipping:
+                self.innerAttributedText.st_add(lineBreakMode: self.lineBreakMode)
+            case .byTruncatingHead,
+                 .byTruncatingTail,
+                 .byTruncatingMiddle:
+                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+            default:
+                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+            }
+            
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+            self.endTouch()
+            self.invalidateIntrinsicContentSize()
+        }
+        get {
+            return _text
+        }
+    }
+    
+    
+    
+    private static let defaultFont = UIFont.systemFont(ofSize: 17)
+    private var _font: UIFont = SwiftyLabel.defaultFont
+    open var font: UIFont? {
+        set {
+            let tmpFont = newValue ?? SwiftyLabel.defaultFont
+            if _font == tmpFont {
+                return
+            }
+            _font = tmpFont
+            
+            self.innerAttributedText.st_add(font: _font)
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+            self.endTouch()
+            self.invalidateIntrinsicContentSize()
+        }
+        get {
+            return _font
+        }
+    }
+    
+    
+    private var _textColor: UIColor = .black
+    open var textColor: UIColor {
+        set {
+            if _textColor == newValue {
+                return
+            }
+            _textColor = newValue
+            
+            self.innerAttributedText.st_add(textColor: _textColor)
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+        }
+        get {
+            _textColor
+        }
+    }
+    
+    
+    private var _textAlignment: NSTextAlignment = .left
+    open var textAlignment: NSTextAlignment {
+        set {
+            if _textAlignment == newValue {
+                return
+            }
+            _textAlignment = newValue
+            
+            self.innerAttributedText.st_add(alignment: _textAlignment)
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+            self.endTouch()
+            self.invalidateIntrinsicContentSize()
+        }
+        get {
+            return _textAlignment
+        }
+    }
+    
+    
+    private var _shadowColor: UIColor?
+    open var shadowColor: UIColor? {
+        set {
+            if _shadowColor == newValue {
+                return
+            }
+            
+            _shadowColor = newValue
+            
+            self.innerAttributedText.st_add(shadow: self.shadowFromProperties())
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+        }
+        get {
+            _shadowColor
+        }
+    }
+    
+    
+    private var _shadowOffset: CGSize = .zero
+    open var shadowOffset: CGSize {
+        set {
+            if _shadowOffset == newValue {
+                return
+            }
+            _shadowOffset = newValue
+            
+            self.innerAttributedText.st_add(shadow: self.shadowFromProperties())
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+        }
+        get {
+            _shadowOffset
+        }
+    }
+    
+    private var _shadowBlurRadius: CGFloat = .zero
+    open var shadowBlurRadius: CGFloat {
+        set {
+            if _shadowBlurRadius == newValue {
+                return
+            }
+            _shadowBlurRadius = newValue
+            
+            self.innerAttributedText.st_add(shadow: self.shadowFromProperties())
+            
+            if self.displaysAsynchronously {
+                self.clearContents()
+            }
+            self.setLayoutNeedUpdate()
+        }
+        get {
+            _shadowBlurRadius
+        }
+    }
+    
+    
+    
+    
+    
     private var _attributedText: NSAttributedString?
-    public var attributedText: NSAttributedString? {
+    open var attributedText: NSAttributedString? {
         set {
             if _attributedText == newValue {
                 return
             }
             if let atr = newValue, atr.length > 0 {
                 self.innerAttributedText = NSMutableAttributedString(attributedString: atr)
+                switch self.lineBreakMode {
+                case .byWordWrapping,
+                     .byCharWrapping,
+                     .byClipping:
+                    self.innerAttributedText.st_add(lineBreakMode: self.lineBreakMode)
+                case .byTruncatingHead,
+                     .byTruncatingTail,
+                     .byTruncatingMiddle:
+                    self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+                default:
+                    self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
+                }
             } else {
                 self.innerAttributedText = NSMutableAttributedString()
             }
@@ -43,6 +268,7 @@ open class SwiftyLabel: UIView {
             if self.displaysAsynchronously {
                 self.clearContents()
             }
+            self.updateOuterTextProperties()
             self.setLayoutNeedUpdate()
             self.endTouch()
             self.invalidateIntrinsicContentSize()
@@ -56,7 +282,7 @@ open class SwiftyLabel: UIView {
     
     
     private var _numberOfLines: Int = 1
-    public var numberOfLines: Int {
+    open var numberOfLines: Int {
         set {
             if _numberOfLines == newValue {
                 return
@@ -80,7 +306,7 @@ open class SwiftyLabel: UIView {
     
     
     private var _exclusionPaths: [UIBezierPath] = []
-    public var exclusionPaths: [UIBezierPath] {
+    open var exclusionPaths: [UIBezierPath] {
         set {
             if _exclusionPaths == newValue {
                 return
@@ -104,7 +330,7 @@ open class SwiftyLabel: UIView {
     
     
     private var _truncationToken: NSAttributedString?
-    public var truncationToken: NSAttributedString? {
+    open var truncationToken: NSAttributedString? {
         set {
             if _truncationToken == newValue {
                 return
@@ -127,7 +353,7 @@ open class SwiftyLabel: UIView {
     
     
     var _verticalAlignment: SwiftyTextVerticalAlignment = .top
-    public var verticalAlignment: SwiftyTextVerticalAlignment {
+    open var verticalAlignment: SwiftyTextVerticalAlignment {
         set {
             if _verticalAlignment == newValue {
                 return
@@ -146,36 +372,13 @@ open class SwiftyLabel: UIView {
         }
     }
     
-    
-    
-//    private var _truncationType: SwiftyTextTruncationType = .end
-//    public var truncationType: SwiftyTextTruncationType {
-//        set {
-//            if _truncationType == newValue {
-//                return
-//            }
-//            _truncationType = newValue
-//            self.innerContainer.truncationType = newValue
-//            
-//            if self.displaysAsynchronously {
-//                self.clearContents()
-//            }
-//            self.setLayoutNeedUpdate()
-//            self.endTouch()
-//            self.invalidateIntrinsicContentSize()
-//        }
-//        get {
-//            return _truncationType
-//        }
-//    }
-
-    
     private var _lineBreakMode: NSLineBreakMode = .byTruncatingTail
-    public var lineBreakMode: NSLineBreakMode {
+    open var lineBreakMode: NSLineBreakMode {
         set {
             if _lineBreakMode == newValue {
                 return
             }
+            
             _lineBreakMode = newValue
             self.innerAttributedText.st_add(lineBreakMode: _lineBreakMode)
             switch _lineBreakMode {
@@ -210,7 +413,7 @@ open class SwiftyLabel: UIView {
     }
     
     
-    public var displaysAsynchronously: Bool = true {
+    open var displaysAsynchronously: Bool = true {
         didSet {
             if let asyncLayer = self.layer as? SwiftyTextAsyncLayer {
                 asyncLayer.displaysAsynchronously = displaysAsynchronously
@@ -288,13 +491,13 @@ extension SwiftyLabel {
         self.innerContainer.numberOfLines = self.numberOfLines
     }
     
-    public override class var layerClass: AnyClass {
+    open override class var layerClass: AnyClass {
         return SwiftyTextAsyncLayer.self
     }
 }
 
 extension SwiftyLabel {
-    public override var frame: CGRect {
+    open override var frame: CGRect {
         set {
             let oldSize: CGSize = bounds.size
             super.frame = newValue
@@ -313,7 +516,7 @@ extension SwiftyLabel {
         }
     }
     
-    public override var bounds: CGRect {
+    open override var bounds: CGRect {
         set {
             let oldSize: CGSize = bounds.size
             super.bounds = newValue
@@ -332,7 +535,7 @@ extension SwiftyLabel {
         }
     }
     
-    override public func sizeThatFits(_ size: CGSize) -> CGSize {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
         var size: CGSize = size
         
         if size.width.isLessThanOrEqualTo(.zero) {
@@ -347,6 +550,46 @@ extension SwiftyLabel {
             return layout?.textSize ?? .zero
         }
         return .zero
+    }
+}
+
+extension SwiftyLabel {
+    private func shadowFromProperties() -> NSShadow? {
+        let shadow = NSShadow()
+        shadow.shadowColor = self.shadowColor
+        shadow.shadowOffset = self.shadowOffset
+        shadow.shadowBlurRadius = self.shadowBlurRadius
+        return shadow
+    }
+    
+    private func updateOuterLineBreakMode() {
+        switch self.innerContainer.truncationType {
+        case .start:
+            _lineBreakMode = .byTruncatingHead
+        case .middle:
+            _lineBreakMode = .byTruncatingMiddle
+        case .end:
+            _lineBreakMode = .byTruncatingTail
+        default:
+            _lineBreakMode = self.innerAttributedText.st_lineBreakMode()
+        }
+    }
+    
+    private func updateOuterTextProperties() {
+        _text = self.innerAttributedText.st_plainText()
+        _font = self.innerAttributedText.st_font() ?? SwiftyLabel.defaultFont
+        _textColor = self.innerAttributedText.st_textColor() ?? UIColor.black
+        _textAlignment = self.innerAttributedText.st_alignment()
+        _lineBreakMode = self.innerAttributedText.st_lineBreakMode()
+        _attributedText = self.innerAttributedText
+        self.updateOuterLineBreakMode()
+    }
+    
+    private func updateOuterContainerProperties() {
+        _truncationToken = self.innerContainer.truncationToken
+        _numberOfLines = self.innerContainer.numberOfLines
+        _exclusionPaths = self.innerContainer.exclusionPaths
+        self.updateOuterLineBreakMode()
     }
 }
 
@@ -589,12 +832,12 @@ extension SwiftyLabel {
 // MARK: - Touch
 extension SwiftyLabel {
     /*
-    1、获取触摸点
-    2、获取触摸点所对应的字符的`SwiftyTextHighlight`对象
-    3、遍历run，获取所有run的`SwiftyTextHighlight`对象等于触摸点的`SwiftyTextHighlight`对象的所有run集合
-    4、遍历run集合，去除所有不连续的run，剩余的run就是高亮所对应的所有run
-    */
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+     1、获取触摸点
+     2、获取触摸点所对应的字符的`SwiftyTextHighlight`对象
+     3、遍历run，获取所有run的`SwiftyTextHighlight`对象等于触摸点的`SwiftyTextHighlight`对象的所有run集合
+     4、遍历run集合，去除所有不连续的run，剩余的run就是高亮所对应的所有run
+     */
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("touchesBegan")
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
@@ -633,7 +876,7 @@ extension SwiftyLabel {
     }
     
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("touchesMoved")
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
@@ -674,7 +917,7 @@ extension SwiftyLabel {
     }
     
     
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("touchesEnded")
         guard let touch = touches.first else { return }
         let touchPoint = touch.location(in: self)
@@ -696,7 +939,7 @@ extension SwiftyLabel {
         }
     }
     
-    public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         //print("touchesCancelled")
         self.endTouch()
         if !self.state.swallowTouch {
@@ -707,7 +950,7 @@ extension SwiftyLabel {
 
 
 extension SwiftyLabel: SwiftyTextAsyncLayerDelegate {
-    public func newAsyncDisplayTask() -> SwiftyTextAsyncLayerDisplayTask {
+    open func newAsyncDisplayTask() -> SwiftyTextAsyncLayerDisplayTask {
         // 存储临时变量
         let contentsNeedFade_ = self.state.contentsNeedFade
         var text_: NSAttributedString = self.innerAttributedText

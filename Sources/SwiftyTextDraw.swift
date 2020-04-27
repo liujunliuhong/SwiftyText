@@ -351,7 +351,8 @@ extension SwiftyTextDraw {
                         if textUnderline != afterTextUnderline {
                             let unionRects = tmpRunRects.st_rects_union()
                             let positionX: CGFloat = unionRects.origin.x
-                            let positionY: CGFloat = line.position.y + point.y // base on baseLine
+                            //let positionY: CGFloat = line.position.y + point.y // base on baseLine
+                            let positionY: CGFloat = line.position.y + line.descent + point.y
                             
                             SwiftyTextDraw.drawUnderlineRects(context: context, underLine: textUnderline, position: CGPoint(x: positionX, y: positionY), rects: tmpRunRects)
                             tmpRunRects.removeAll()
@@ -359,7 +360,8 @@ extension SwiftyTextDraw {
                     } else {
                         let unionRects = tmpRunRects.st_rects_union()
                         let positionX: CGFloat = unionRects.origin.x
-                        let positionY: CGFloat = line.position.y + point.y // base on baseLine
+                        //let positionY: CGFloat = line.position.y + point.y // base on baseLine
+                        let positionY: CGFloat = line.position.y + line.descent + point.y
                         
                         SwiftyTextDraw.drawUnderlineRects(context: context, underLine: textUnderline, position: CGPoint(x: positionX, y: positionY), rects: tmpRunRects)
                         tmpRunRects.removeAll()
@@ -625,6 +627,66 @@ extension SwiftyTextDraw {
             context.restoreGState()
         default:
             break
+        }
+    }
+}
+
+
+// MARK: - Draw Shadow
+extension SwiftyTextDraw {
+    internal static func drawShadow(layout: SwiftyTextLayout, context: CGContext, size: CGSize, point: CGPoint, cancel: (() -> Bool)? = nil) {
+        if layout.lines.count <= 0 {
+            return
+        }
+        if !layout.isNeedDrawShadow {
+            return
+        }
+        if let cancel = cancel, cancel() {
+            return
+        }
+        
+        let offsetAlterX: CGFloat = size.width + 0xffff
+        
+        let lines = layout.lines
+        for index in 0..<lines.count {
+            var line: SwiftyTextLine = lines[index]
+            if let truncatedLine = layout.truncatedLine, truncatedLine.index == line.index {
+                line = truncatedLine
+            }
+            
+            if line.line == nil {
+                continue
+            }
+            
+            let posX: CGFloat = line.position.x
+            let posY: CGFloat = size.height - line.position.y
+            
+            let runs: CFArray = CTLineGetGlyphRuns(line.line!)
+            let runCount: CFIndex = CFArrayGetCount(runs)
+            
+            for i in 0..<runCount {
+                let run: CTRun = unsafeBitCast(CFArrayGetValueAtIndex(runs, i), to: CTRun.self)
+                if let runAttributes = CTRunGetAttributes(run) as? [NSAttributedString.Key : Any],
+                    CTRunGetGlyphCount(run) > 0,
+                    let shadow: NSShadow = runAttributes[NSAttributedString.Key.shadow] as? NSShadow,
+                    let shadowColor = shadow.shadowColor as? UIColor{
+                    
+                    var offset = shadow.shadowOffset
+                    offset.width = offset.width - offsetAlterX
+                    
+                    context.saveGState()
+                    context.textMatrix = .identity
+                    context.textPosition = CGPoint(x: posX, y: posY)
+                    context.translateBy(x: point.x, y: point.y)
+                    context.translateBy(x: 0, y: size.height)
+                    context.scaleBy(x: 1, y: -1)
+                    context.setShadow(offset: offset, blur: shadow.shadowBlurRadius, color: shadowColor.cgColor)
+                    context.setBlendMode(.normal)
+                    context.translateBy(x: offsetAlterX, y: 0)
+                    SwiftyTextDraw.drawRun(line: line, run: run, context: context, size: size)
+                    context.restoreGState()
+                }
+            }
         }
     }
 }

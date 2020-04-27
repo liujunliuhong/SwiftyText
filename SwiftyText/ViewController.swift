@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     var dataSource: [String] {
         return ["基础属性",
+                "图文混排",
                 "自定义字体",
                 "特殊文字(比如阿拉伯文，日文)"]
     }
@@ -55,9 +56,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             let vc = BaseViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 1 {
-            let vc = CustomFontViewController()
+            let vc = MixedViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 2 {
+            let vc = CustomFontViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 3 {
             
         }
     }

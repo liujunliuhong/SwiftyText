@@ -28,6 +28,7 @@ public class SwiftyTextLayout: NSObject {
     
     public private(set) var isContainHighlight: Bool = false
     public private(set) var isNeedDrawText = false
+    public private(set) var isNeedDrawShadow = false
     public private(set) var isNeedDrawBackgroundBorder = false
     public private(set) var isNeedDrawAttachment = false
     public private(set) var isNeedDrawStrikethrough = false
@@ -63,7 +64,7 @@ extension SwiftyTextLayout {
         }
         
         // check size
-        if container.size.height.isEqual(to: CGFloat.greatestFiniteMagnitude) {
+        if !container.size.height.isLessThanOrEqualTo(SwiftyTextMaxSize.height) {
             container.size.height = SwiftyTextMaxSize.height
         }
         
@@ -397,6 +398,7 @@ extension SwiftyTextLayout {
         var isContainHighlight: Bool = false
         var isNeedDrawStrikethrough: Bool = false
         var isNeedDrawUnderline: Bool = false
+        var isNeedDrawShadow: Bool = false
         
         if visibleRange.length > 0 {
             isNeedDrawText = true
@@ -415,6 +417,9 @@ extension SwiftyTextLayout {
                 }
                 if let _ = attrs[.stUnderlineAttributeName] {
                     isNeedDrawUnderline = true
+                }
+                if let _ = attrs[NSAttributedString.Key.shadow] {
+                    isNeedDrawShadow = true
                 }
             }
             attributedText.enumerateAttributes(in: visibleRange, options: .longestEffectiveRangeNotRequired, using: block)
@@ -473,6 +478,7 @@ extension SwiftyTextLayout {
         textLayout.isNeedDrawBackgroundBorder = isNeedDrawBackgroundBorder
         textLayout.isNeedDrawStrikethrough = isNeedDrawStrikethrough
         textLayout.isNeedDrawUnderline = isNeedDrawUnderline
+        textLayout.isNeedDrawShadow = isNeedDrawShadow
         textLayout.isContainHighlight = isContainHighlight
         
         textLayout.textRect = textRect
@@ -498,6 +504,14 @@ extension SwiftyTextLayout {
                 return
             }
             SwiftyTextDraw.drawBackgroundBorder(layout: layout, context: context, size: size, point: point, cancel: cancel)
+        }
+        
+        // draw shadow
+        if layout.isNeedDrawShadow, let context = context {
+            if let cancel = cancel, cancel() {
+                return
+            }
+            SwiftyTextDraw.drawShadow(layout: layout, context: context, size: size, point: point, cancel: cancel)
         }
         
         // draw under line
