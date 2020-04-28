@@ -69,7 +69,7 @@ public class SwiftyTextContainer: NSObject {
     
     
     private var _truncationType: SwiftyTextTruncationType = .end
-    public var truncationType: SwiftyTextTruncationType {
+    public private(set) var truncationType: SwiftyTextTruncationType {
         set {
             lock.wait()
             _truncationType = newValue
@@ -83,6 +83,34 @@ public class SwiftyTextContainer: NSObject {
         }
     }
     
+    private var _lineBreakMode: NSLineBreakMode = .byTruncatingTail
+    public var lineBreakMode: NSLineBreakMode {
+        set {
+            lock.wait()
+            _lineBreakMode = newValue
+            lock.signal()
+            switch _lineBreakMode {
+            case .byWordWrapping,
+                 .byCharWrapping,
+                 .byClipping:
+                self.truncationType = .none
+            case .byTruncatingHead:
+                self.truncationType = .start
+            case .byTruncatingTail:
+                self.truncationType = .end
+            case .byTruncatingMiddle:
+                self.truncationType = .middle
+            @unknown default:
+                self.truncationType = .end
+            }
+        }
+        get {
+            lock.wait()
+            let l = _lineBreakMode
+            lock.signal()
+            return l
+        }
+    }
     
     
     private var _truncationToken: NSAttributedString?
@@ -119,7 +147,8 @@ extension SwiftyTextContainer: NSCopying {
         c._exclusionPaths = _exclusionPaths
         c._numberOfLines = _numberOfLines
         c._truncationType = _truncationType
-        c.truncationToken = _truncationToken
+        c._truncationToken = _truncationToken
+        c._lineBreakMode = _lineBreakMode
         lock.signal()
         return c
     }

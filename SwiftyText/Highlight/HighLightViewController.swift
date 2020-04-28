@@ -1,14 +1,14 @@
 //
-//  MixedViewController.swift
+//  HighLightViewController.swift
 //  SwiftyText
 //
-//  Created by apple on 2020/4/27.
+//  Created by apple on 2020/4/28.
 //  Copyright © 2020 yinhe. All rights reserved.
 //
 
 import UIKit
 
-class MixedViewController: UIViewController {
+class HighLightViewController: UIViewController {
 
     lazy var label: SwiftyLabel = {
         let label = SwiftyLabel()
@@ -22,15 +22,14 @@ class MixedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-        self.navigationItem.title = "图文混排"
-        
+        self.view.backgroundColor = UIColor.white
+        self.navigationItem.title = "点击高亮"
         self.makeUI()
         self.makeYYLabel()
     }
 }
 
-extension MixedViewController {
+extension HighLightViewController {
     func makeUI() {
         
         let sumAtr = NSMutableAttributedString()
@@ -55,7 +54,7 @@ extension MixedViewController {
             sumAtr.append(atr)
         }
         do {
-           let image = UIImage(named: "image2")
+            let image = UIImage(named: "image2")
             let imageSize: CGSize = CGSize(width: 50, height: 50)
             if let imageAtr = NSMutableAttributedString.st_attachmentString(content: image, contentMode: .scaleToFill, size: imageSize, font: UIFont.systemFont(ofSize: 20), verticalAlignment: .center) {
                 sumAtr.append(imageAtr)
@@ -63,7 +62,7 @@ extension MixedViewController {
         }
         
         do {
-            let atr = NSMutableAttributedString(string: "dsdjfhsdkhfksdhfkjsdhfhwehrhjkshfjkhdsjkfhksdjhfksd")
+            let atr = NSMutableAttributedString(string: "dsdjfhsdkhfksdhfkjsdhfhwe嘻嘻哈哈hrhjkshfjkhdsjkfhksdjhfksd")
             atr.st_add(font: UIFont.boldSystemFont(ofSize: 25))
             atr.st_add(textColor: .purple)
             sumAtr.append(atr)
@@ -96,17 +95,22 @@ extension MixedViewController {
         
         
         do {
-           let image = UIImage(named: "image3")
+            let image = UIImage(named: "image3")
             let imageSize: CGSize = CGSize(width: 40, height: 100)
             if let imageAtr = NSMutableAttributedString.st_attachmentString(content: image, contentMode: .scaleToFill, size: imageSize, font: UIFont.systemFont(ofSize: 20), verticalAlignment: .center) {
                 sumAtr.append(imageAtr)
             }
         }
         
+        sumAtr.st_highlight(with: NSRange(location: 30, length: 40), backgroundColor: UIColor.red, highlightTextColor: nil, userInfo: ["name": "liujun"], tapAction: { (_, _, _, info) in
+            print("SwiftyLabel 高亮点击")
+            print("user info: \(info ?? [:])")
+        })
+        
         var frame = CGRect(x: 40.0, y: UIApplication.shared.statusBarFrame.height + 44.0 + 20, width: UIScreen.main.bounds.width - 40.0 - 40.0, height: 0.0)
         
         let lineBreakMode: NSLineBreakMode = .byCharWrapping // 定义一个常量，存储`lineBreakMode`
-
+        
         self.label.frame = frame
         self.label.numberOfLines = 0
         self.label.lineBreakMode = lineBreakMode // `label`设置`lineBreakMode`
@@ -124,7 +128,6 @@ extension MixedViewController {
         frame.size.height = layout?.textSize.height ?? 0.0
         self.label.frame = frame
     }
-    
     
     
     
@@ -170,7 +173,7 @@ extension MixedViewController {
         }
         
         do {
-            let atr = NSMutableAttributedString(string: "dsdjfhsdkhfksdhfkjsdhfhwehrhjkshfjkhdsjkfhksdjhfksd")
+            let atr = NSMutableAttributedString(string: "dsdjfhsdkhfksdhfkjsdhfhwe嘻嘻哈哈hrhjkshfjkhdsjkfhksdjhfksd")
             atr.yy_setFont(UIFont.boldSystemFont(ofSize: 25), range: NSRange(location: 0, length: atr.length))
             atr.yy_setColor(.purple, range: NSRange(location: 0, length: atr.length))
             sumAtr.append(atr)
@@ -209,13 +212,16 @@ extension MixedViewController {
             sumAtr.append(imageAtr)
         }
         
+        sumAtr.yy_setTextHighlight(NSRange(location: 30, length: 40), color: nil, backgroundColor: .red) { (_, _, _, _) in
+            print("YYLabel 高亮点击")
+        }
+        
         
         var frame = CGRect(x: 40.0, y: self.label.frame.maxY + 20, width: UIScreen.main.bounds.width - 40.0 - 40.0, height: 0.0)
         
         let lineBreakMode: NSLineBreakMode = .byCharWrapping
         
         
-        // 运行Demo之后，可以看出高度计算不准确，底部空出了一行的高度
         self.yyLabel.frame = frame
         self.yyLabel.textVerticalAlignment = .top
         self.yyLabel.numberOfLines = 0

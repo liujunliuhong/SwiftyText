@@ -380,26 +380,9 @@ open class SwiftyLabel: UIView {
             }
             
             _lineBreakMode = newValue
-            self.innerAttributedText.st_add(lineBreakMode: _lineBreakMode)
-            switch _lineBreakMode {
-            case .byWordWrapping,
-                 .byCharWrapping,
-                 .byClipping:
-                self.innerContainer.truncationType = .none
-                self.innerAttributedText.st_add(lineBreakMode: _lineBreakMode)
-            case .byTruncatingHead:
-                self.innerContainer.truncationType = .start
-                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
-            case .byTruncatingTail:
-                self.innerContainer.truncationType = .end
-                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
-            case .byTruncatingMiddle:
-                self.innerContainer.truncationType = .middle
-                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
-            @unknown default:
-                self.innerContainer.truncationType = .end
-                self.innerAttributedText.st_add(lineBreakMode: .byWordWrapping)
-            }
+            
+            self.innerContainer.lineBreakMode = _lineBreakMode
+            
             if self.displaysAsynchronously {
                 self.clearContents()
             }

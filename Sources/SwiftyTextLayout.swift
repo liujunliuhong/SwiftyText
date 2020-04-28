@@ -59,13 +59,31 @@ extension SwiftyTextLayout {
         guard let container = container else {
             return nil
         }
-        guard let attributedText = attributedText else {
+        
+        guard let atr = attributedText else {
             return nil
         }
+        
+       let attributedText = NSMutableAttributedString(attributedString: atr)
         
         // check size
         if !container.size.height.isLessThanOrEqualTo(SwiftyTextMaxSize.height) {
             container.size.height = SwiftyTextMaxSize.height
+        }
+        
+        switch container.lineBreakMode {
+        case .byWordWrapping,
+             .byCharWrapping,
+             .byClipping:
+            attributedText.st_add(lineBreakMode: container.lineBreakMode)
+        case .byTruncatingHead:
+            attributedText.st_add(lineBreakMode: .byWordWrapping)
+        case .byTruncatingTail:
+            attributedText.st_add(lineBreakMode: .byWordWrapping)
+        case .byTruncatingMiddle:
+            attributedText.st_add(lineBreakMode: .byWordWrapping)
+        @unknown default:
+            attributedText.st_add(lineBreakMode: .byWordWrapping)
         }
         
         

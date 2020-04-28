@@ -30,6 +30,7 @@
 		183B3C9E2456F122000FCE87 /* BaseTextShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B3C9D2456F122000FCE87 /* BaseTextShadowViewController.swift */; };
 		183B3CA024570EF8000FCE87 /* BaseTextStrokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B3C9F24570EF8000FCE87 /* BaseTextStrokeViewController.swift */; };
 		183B3CA5245712DF000FCE87 /* MixedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183B3CA4245712DF000FCE87 /* MixedViewController.swift */; };
+		18416D8C2457F301006B777A /* HighLightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18416D8B2457F301006B777A /* HighLightViewController.swift */; };
 		18B2360624552996009FA100 /* SwiftyTextAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B2360524552996009FA100 /* SwiftyTextAsyncLayer.m */; };
 		18B2360924552E5C009FA100 /* SwiftyTextProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B2360824552E5C009FA100 /* SwiftyTextProxy.m */; };
 		18B2360B2455374F009FA100 /* SwiftyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B2360A2455374F009FA100 /* SwiftyLabel.swift */; };
@@ -74,6 +75,7 @@
 		183B3C9D2456F122000FCE87 /* BaseTextShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextShadowViewController.swift; sourceTree = "<group>"; };
 		183B3C9F24570EF8000FCE87 /* BaseTextStrokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextStrokeViewController.swift; sourceTree = "<group>"; };
 		183B3CA4245712DF000FCE87 /* MixedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixedViewController.swift; sourceTree = "<group>"; };
+		18416D8B2457F301006B777A /* HighLightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighLightViewController.swift; sourceTree = "<group>"; };
 		18B2360424552996009FA100 /* SwiftyTextAsyncLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTextAsyncLayer.h; sourceTree = "<group>"; };
 		18B2360524552996009FA100 /* SwiftyTextAsyncLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwiftyTextAsyncLayer.m; sourceTree = "<group>"; };
 		18B2360724552E5C009FA100 /* SwiftyTextProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyTextProxy.h; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 				183B3CA4245712DF000FCE87 /* MixedViewController.swift */,
 			);
 			path = Mixed;
+			sourceTree = "<group>";
+		};
+		18416D8A2457F2EC006B777A /* Highlight */ = {
+			isa = PBXGroup;
+			children = (
+				18416D8B2457F301006B777A /* HighLightViewController.swift */,
+			);
+			path = Highlight;
 			sourceTree = "<group>";
 		};
 		18B236142455B11A009FA100 /* Custom Font */ = {
@@ -171,6 +181,7 @@
 				18BFEE942451B7B30027981B /* Sources */,
 				18BFEE802451B6600027981B /* AppDelegate.swift */,
 				18BFEE842451B6600027981B /* ViewController.swift */,
+				18416D8A2457F2EC006B777A /* Highlight */,
 				183B3CA3245712C4000FCE87 /* Mixed */,
 				18B236152455B915009FA100 /* Base */,
 				18B236142455B11A009FA100 /* Custom Font */,
@@ -392,6 +403,7 @@
 				18BFEEA12451BDEA0027981B /* SwiftyTextAttachment.swift in Sources */,
 				18B2360624552996009FA100 /* SwiftyTextAsyncLayer.m in Sources */,
 				183B3C9C2456EF8E000FCE87 /* BaseTextStrikethroughViewController.swift in Sources */,
+				18416D8C2457F301006B777A /* HighLightViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

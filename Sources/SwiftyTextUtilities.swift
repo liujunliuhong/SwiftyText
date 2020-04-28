@@ -112,4 +112,8 @@ extension NSMutableAttributedString {
             self.removeAttribute(key, range: _range)
         }
     }
+    
+    public func st_range() -> NSRange {
+        return NSRange(location: 0, length: self.length)
+    }
 }
