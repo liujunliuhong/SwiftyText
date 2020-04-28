@@ -15,7 +15,8 @@ class ViewController: UIViewController {
                 "图文混排",
                 "高亮",
                 "自定义字体",
-                "特殊文字(比如阿拉伯文，日文)"]
+                "特殊文字(比如阿拉伯文，日文)",
+                "复杂列表"]
     }
     
     lazy var tableView: UITableView = {
@@ -67,6 +68,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.row == 4 {
             
+        } else if indexPath.row == 5 {
+            let vc = ComplexListViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

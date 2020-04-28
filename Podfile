@@ -6,5 +6,6 @@ target 'SwiftyText' do
 
   
   pod 'YYText'
+  pod 'SnapKit'
 
 end
